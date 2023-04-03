@@ -797,9 +797,6 @@ function GetGitSoundID(GithubSnd,SoundName)
 	return (getcustomasset or getsynasset)("customObject_Sound_"..FileName..".mp3")
 end
 
-local SelfModules = {
-		Functions = loadstring(game:HttpGet("https://raw.githubusercontent.com/RegularVynixu/Utilities/main/Functions.lua"))(),
-	}
 
 --why balls
 game.ReplicatedStorage.GameData.LatestRoom.Changed:Connect(function()
