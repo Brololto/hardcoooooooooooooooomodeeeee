@@ -1526,7 +1526,7 @@ end)
 
 
 Spawn1 = coroutine.wrap(function() -- yummers
-while task.wait(395) do
+while task.wait(385) do
 		if workspace.Ambience_Figure.Playing == true then
 			continue
 		end
@@ -1776,8 +1776,7 @@ end)
 
 
 
-spawn(function() -- rebound
-while wait(264) do
+wait(242)
 game:GetService("ReplicatedStorage").GameData.LatestRoom:GetPropertyChangedSignal("Value"):Wait()   
 game.Lighting.MainColorCorrection.TintColor = Color3.fromRGB(61, 171, 98)
 game.Lighting.MainColorCorrection.Contrast = 0.2
@@ -2417,14 +2416,6 @@ end
 
 -- Run the created entity
 Creator.runEntity(entity)
-           pcall(Rebound)
-          end
-      end)
-
-
-
-game:GetService("ReplicatedStorage").GameData.LatestRoom.Value ~= 50 then
-workspace.Rebound:Destroy()
 
 
 
