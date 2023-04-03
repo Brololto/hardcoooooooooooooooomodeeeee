@@ -2516,7 +2516,9 @@ game.Workspace.Ambience_Figure.SoundId = game.Workspace.Ambience_FigureIntense.S
 game.Workspace.Ambience_Figure.Volume = "0.7"
 if game.ReplicatedStorage.GameData.LatestRoom.Value == "50" then
 end
-function terror()
+spawn(function()
+while true do
+wait(700)
 game:GetService("ReplicatedStorage").GameData.LatestRoom:GetPropertyChangedSignal("Value"):Wait()
 game.Lighting.MainColorCorrection.TintColor = Color3.fromRGB(62, 7, 12)
 game.Lighting.MainColorCorrection.Contrast = 0.2
@@ -2611,6 +2613,8 @@ end
 
 -- Run the created entity
 Creator.runEntity(entity)
+end
+end)
      
          
 
@@ -2823,17 +2827,3 @@ end)
 
 
 
---terror spawn
-coroutine.wrap(function()
-while true do
-	wait(185) -- 185
-	if (workspace.Ambience_Seek.Playing or workspace.Ambience_FigureIntense.Playing or workspace.Ambience_Seek.Playing) then
-
-	if Beans == true and (not workspace.Ambience_Seek.Playing or not workspace.Ambience_FigureIntense.Playing)then
-		coroutine.wrap(terror)()
-		
-	end
-	end
-
-end
-end)()
