@@ -1524,19 +1524,8 @@ end)
 
 
 
-
-Spawn1 = coroutine.wrap(function() -- yummers
-while task.wait(385) do
-		if workspace.Ambience_Figure.Playing == true then
-			continue
-		end
-		if workspace.Ambience_FigureEnd.Playing == true then
-			continue
-		end
-		if workspace.Ambience_FigureStart.Playing == true then
-			continue
-		end
-		local Creator = loadstring(game:HttpGet("https://raw.githubusercontent.com/RegularVynixu/Utilities/main/Doors%20Entity%20Spawner/Source.lua"))()
+wait(385)
+	 local Creator = loadstring(game:HttpGet("https://raw.githubusercontent.com/RegularVynixu/Utilities/main/Doors%20Entity%20Spawner/Source.lua"))()
 			-- Create entity
 			local entity = Creator.createEntity({
 				Model = "https://github.com/Brololto/NEWV2/blob/main/specimen_2_remodel_fixed.rbxm?raw=true",
@@ -1641,9 +1630,7 @@ Achievements.Get({
 
 			-- Run the created entity
 			Creator.runEntity(entity)
-end
-end)
-Spawn1()
+
 
 
 
