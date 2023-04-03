@@ -270,7 +270,7 @@ function QCHWWK_fake_script() -- StaminaBar.SprintFire
 
 
 	--local ModuleScripts = {
-
+ 
 
 	---	MainGame = require(Plr.PlayerGui.MainUI.Initiator.Main_Game),
 
