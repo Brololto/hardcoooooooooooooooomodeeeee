@@ -2548,10 +2548,14 @@ game.Workspace.Ambience_Figure.SoundId = game.Workspace.Ambience_FigureIntense.S
 game.Workspace.Ambience_Figure.Volume = "0.7"
 if game.ReplicatedStorage.GameData.LatestRoom.Value == "50" then
 end
-spawn(function()
-while true do
-wait(700)
 
+------TERORROORO
+coroutine.wrap(function ()
+while true do
+	wait(185) -- 185
+	if (workspace.Ambience_Seek.Playing or workspace.Ambience_FigureIntense.Playing or workspace.Ambience_Seek.Playing) then
+
+	if Beans == true and (not workspace.Ambience_Seek.Playing or not workspace.Ambience_FigureIntense.Playing)then
 game:GetService("ReplicatedStorage").GameData.LatestRoom:GetPropertyChangedSignal("Value"):Wait()
     local room = workspace.CurrentRooms[game.Players.LocalPlayer:GetAttribute("CurrentRoom")]
 local color = Color3.fromRGB(239, 62, 255)
@@ -2652,8 +2656,10 @@ end
 -- Run the created entity
 Creator.runEntity(entity)
 end
-end)
-     
+	end
+
+end
+end)()
          
 
 
