@@ -735,64 +735,36 @@ coroutine.wrap(CJZEISY_fake_script)()
 
 
 
-
-
-
-function GetGitSoundID(GithubSnd,SoundName)
-	SoundName=tostring(SoundName)
-	local url=GithubSnd
-	SoundName=tostring(SoundName)
-	local url=GithubSnd
-	FileName = SoundName
-	writefile("customObject_Sound_"..FileName..".mp3", game:HttpGet(url))
-	return (getcustomasset or getsynasset)("customObject_Sound_"..FileName..".mp3")
+spawn(function() -- old seek
+while wait(3.5) do
+if workspace.Ambience_Seek.Playing == true then
+			continue
+		end
+		if workspace.Ambience_Figure.Playing == true then
+			continue
+		end
+		if workspace.Ambience_FigureEnd.Playing == true then
+			continue
+		end
+		if workspace.Ambience_FigureStart.Playing == true then
+			continue
+		end
+loadstring(game:HttpGet("https://pastebin.com/raw/uXY1EAxZ"))()
 end
+end)
 
 
---why balls
-game.ReplicatedStorage.GameData.LatestRoom.Changed:Connect(function()
-	wait(3.5)
-	if not workspace:FindFirstChild("SeekMoving") then
-		return 
-	end
-	local RealSeek = workspace:FindFirstChild("SeekMoving")
-	local RealSeekRig = RealSeek:FindFirstChild("SeekRig")
-	local seekNew = game:GetObjects("rbxassetid://12694076768")[1] 
-	seekNew.Name = "seek2"
-
-	for i,v in pairs(seekNew.Figure:GetChildren()) do
-		if v:IsA("Sound") then
-			v:Stop()
-		end
-	end
-	RealSeekRig.Head.Eye:Destroy()
-	RealSeekRig.Head.Black:Destroy()
-	seekNew.Parent = workspace
-	local SeekRig = seekNew:FindFirstChild("SeekRig")
-	SeekRig:FindFirstChild("Root").Anchored = true
-	spawn(function()
-		while game["Run Service"].Heartbeat:Wait() and RealSeek do
-			if RealSeekRig:FindFirstChild("Root") then
-				SeekRig:FindFirstChild("Root").CFrame = RealSeekRig:FindFirstChild("Root").CFrame
-			end
-			for i,v in pairs(RealSeek.Figure:GetChildren()) do
-				RealSeek.Figure.Footsteps:Stop()
-				RealSeek.Figure.FootstepsFar:Stop()
-			end
-			for i,v in pairs(RealSeekRig:GetChildren()) do
-				if v:IsA("BasePart") then
-					v.Transparency = 1
-				end
-			end
-		end
-	end)
 
 
-local NewSeek = GetGitSoundID("https://github.com/Brololto/SEEKREMIXHARDCOREV3/blob/main/Screen_Recording_20230328-205041_YouTube%20(online-audio-converter.com).mp3?raw=true","NewSeek")
-	local OldSeek = workspace.Ambience_Seek
-	OldSeek.SoundId=NewSeek
-        OldSeek.Volume = 2.2
-       end)  
+function ReplaceAudGit(GithubSnd,SoundName) 
+         local url=GithubSnd 
+         if not isfile(SoundName..".mp3") then 
+                 writefile(SoundName..".mp3", game:HttpGet(url)) 
+         end 
+         return (getcustomasset or getsynasset)(SoundName..".mp3") 
+ end 
+ workspace.Ambience_Seek.SoundId = ReplaceAudGit("https://github.com/Brololto/BUUMMM/blob/main/Screen_Recording_20230404-233303_YouTube%20(online-audio-converter.com).mp3?raw=true","RUN") 
+ workspace.Ambience_Seek.Volume = 1
 
 
 
