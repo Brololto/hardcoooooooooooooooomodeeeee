@@ -905,7 +905,7 @@ local entity = Creator.createEntity({
     KillRange = 60,
     BackwardsMovement = false,
     FlickerLights = {
-        true, -- Enabled
+        false, -- Enabled
         2.5, -- Time (seconds)
     },
     Cycles = {
@@ -953,11 +953,10 @@ end
 
 entity.Debug.OnEntityDespawned = function(entityModel)
     print("Entity has despawned:", entityModel)
-    
-local Metalsound = Instance.new("Sound", workspace)
-		Metalsound.SoundId = "rbxassetid://9116546593"
-		Metalsound:Play()
-		Metalsound.Volume = 6     
+    local Slam = GetGitSound("https://github.com/Brololto/FUCKYOUFACCIST/blob/main/Screen_Recording_20230407-114843_YouTube%20(online-audio-converter.com).mp3?raw=true","Slam")
+			Slam.Parent = workspace
+			Slam.Volume = 20
+			Slam:Play() 
 workspace.CurrentRooms[game.ReplicatedStorage.GameData.LatestRoom.Value]:WaitForChild("Door").ClientOpen:FireServer()
 end
 
