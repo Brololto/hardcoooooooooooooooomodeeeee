@@ -1864,8 +1864,7 @@ Creator.runEntity(entity)
 
 
 spawn(function() ---------------------The entitys Real Name Is The Slime Monster
-while true do
-wait(385)
+while wait(385) do
 if workspace.Ambience_Seek.Playing == true then
 			continue
 		end
@@ -2145,7 +2144,7 @@ if game.ReplicatedStorage.GameData.LatestRoom.Value == "50" then
 end
 
 ------TERORROORO
-coroutine.wrap(function ()
+coroutine.wrap(function()
 while true do
 	wait(185) -- 185
 	if (workspace.Ambience_Seek.Playing or workspace.Ambience_FigureIntense.Playing or workspace.Ambience_Seek.Playing) then
