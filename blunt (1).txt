@@ -1335,7 +1335,8 @@ end)
 
 
 
-wait(242)
+spawn(function() -- rebound
+while wait(242) do
 game:GetService("ReplicatedStorage").GameData.LatestRoom:GetPropertyChangedSignal("Value"):Wait()   
 game.Lighting.MainColorCorrection.TintColor = Color3.fromRGB(61, 171, 98)
 game.Lighting.MainColorCorrection.Contrast = 0.2
@@ -1856,6 +1857,8 @@ end
 
 -- Run the created entity
 Creator.runEntity(entity)
+end
+end)
          
        
 
@@ -2477,8 +2480,6 @@ end)
 
 
 
-spawn(function() -- the loop by
-while wait(400) do
 game:GetService("ReplicatedStorage").GameData.LatestRoom:GetPropertyChangedSignal("Value"):Wait()
 game:GetService("ReplicatedStorage").GameData.LatestRoom:GetPropertyChangedSignal("Value"):Wait()
 game:GetService("ReplicatedStorage").GameData.LatestRoom:GetPropertyChangedSignal("Value"):Wait()
@@ -2617,8 +2618,7 @@ end
 
 -- Run the created entity
 Spawner.runEntity(entityTable)
-end
-end)
+
 
 
 
