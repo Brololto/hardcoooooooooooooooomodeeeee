@@ -856,12 +856,13 @@ local function GetGitSound(GithubSnd,SoundName)
 			local Chase = GetGitSound("https://github.com/Brololto/bettersound/blob/main/Screen_Recording_20230328-170621_YouTube%20(online-audio-converter.com).mp3?raw=true","G-95chase")
 			Chase.Parent = workspace
 			Chase.Volume = 3
--- Create entity
-local Metalsound = Instance.new("Sound", workspace)
-		Metalsound.SoundId = "rbxassetid://9116546593"
-		Metalsound:Play()
-		Metalsound.Volume = 6      
-		wait(2)
+
+			local saf = GetGitSound("https://github.com/Brololto/Scary/blob/main/Screen_Recording_20230406-195405_YouTube%20(online-audio-converter.com).mp3raw=true","saf")
+			saf.Parent = workspace
+			saf.Volume = 5
+saf:Play()
+
+
 
   local Smilersound = Instance.new("Sound", workspace)
 		Smilersound.SoundId = "rbxassetid://9125713501"
@@ -883,6 +884,13 @@ local color = Color3.fromRGB(255, 0, 0)
 				end
 			end
 		end
+game.Lighting.MainColorCorrection.TintColor = Color3.fromRGB(255, 0, 0)
+game.Lighting.MainColorCorrection.Contrast = 1
+local tween = game:GetService("TweenService")
+tween:Create(game.Lighting.MainColorCorrection, TweenInfo.new(2.5), {Contrast = 0}):Play()
+local TweenService = game:GetService("TweenService")
+local TW = TweenService:Create(game.Lighting.MainColorCorrection, TweenInfo.new(80),{TintColor = Color3.fromRGB(255, 255, 255)})
+TW:Play()
 local Creator = loadstring(game:HttpGet("https://raw.githubusercontent.com/RegularVynixu/Utilities/main/Doors%20Entity%20Spawner/Source.lua"))()
 
 
@@ -945,10 +953,11 @@ end
 
 entity.Debug.OnEntityDespawned = function(entityModel)
     print("Entity has despawned:", entityModel)
-    local Slamsound = Instance.new("Sound", workspace)
-		Slamsound.SoundId = "rbxassetid://1837829565"
-		Slamsound:Play()
-		Slamsound.Volume = 5     
+    
+local Metalsound = Instance.new("Sound", workspace)
+		Metalsound.SoundId = "rbxassetid://9116546593"
+		Metalsound:Play()
+		Metalsound.Volume = 6     
 workspace.CurrentRooms[game.ReplicatedStorage.GameData.LatestRoom.Value]:WaitForChild("Door").ClientOpen:FireServer()
 end
 
