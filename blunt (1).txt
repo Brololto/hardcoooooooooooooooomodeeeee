@@ -2148,127 +2148,106 @@ end)
 
 
 
-
-
-
-
-
 game.Workspace.Ambience_Figure.SoundId = game.Workspace.Ambience_FigureIntense.SoundId
 game.Workspace.Ambience_Figure.Volume = "0.7"
 if game.ReplicatedStorage.GameData.LatestRoom.Value == "50" then
-end
-
-------TERORROORO
-coroutine.wrap(function()
-while true do
-	wait(185) -- 185
-	if (workspace.Ambience_Seek.Playing or workspace.Ambience_FigureIntense.Playing or workspace.Ambience_Seek.Playing) then
-
-	if Beans == true and (not workspace.Ambience_Seek.Playing or not workspace.Ambience_FigureIntense.Playing)then
-game:GetService("ReplicatedStorage").GameData.LatestRoom:GetPropertyChangedSignal("Value"):Wait()
-    local room = workspace.CurrentRooms[game.Players.LocalPlayer:GetAttribute("CurrentRoom")]
-local color = Color3.fromRGB(239, 62, 255)
-		room.LightBase.SurfaceLight.Enabled = true
-		room.LightBase.SurfaceLight.Color = color
-		for _, thing in pairs(room.Assets:GetDescendants()) do
-			if thing:FindFirstChild"LightFixture" then
-				thing.LightFixture.Neon.Color = color
-				for _, light in pairs(thing.LightFixture:GetChildren()) do
-					if light:IsA("SpotLight") or light:IsA("PointLight") then
-						light.Color = color
-					end
-				end
-			end
-		end
-local Creator = loadstring(game:HttpGet("https://raw.githubusercontent.com/RegularVynixu/Utilities/main/Doors%20Entity%20Spawner/Source.lua"))()
+workspace.CurrentRooms[game.ReplicatedStorage.GameData.LatestRoom.Value].Assets.Light_Fixtures:Destroy()
+workspace.CurrentRooms[game.ReplicatedStorage.GameData.LatestRoom.Value].Assets.Chandelier:Destroy()
+local Spawner = loadstring(game:HttpGet("https://raw.githubusercontent.com/RegularVynixu/Utilities/main/Doors%20Entity%20Spawner/Source.lua"))()
 -- Create entity
-
-local entity = Creator.createEntity({
-    CustomName = "Enraged Terror", -- Custom name of your entity
-    Model = "https://github.com/Brololto/NEWENRAGEDTERRORHARDCORE/blob/main/enrager_terroror.rbxm?raw=true", -- Can be GitHub file or rbxassetid
-    Speed = 940, -- Percentage, 100 = default Rush speed
-    DelayTime = 3, -- Time before starting cycles (seconds)
-    HeightOffset = 10,
+local entityTable = Spawner.createEntity({
+    CustomName = "Hunger", -- Custom name of your entity
+    Model = "rbxassetid://11969147945", -- Can be GitHub file or rbxassetid
+    Speed = 38, -- Percentage, 100 = default Rush speed
+    DelayTime = 0, -- Time before starting cycles (seconds)
+    HeightOffset = 0,
     CanKill = true,
+    KillRange = 4,
+    BackwardsMovement = true,
     BreakLights = false,
-    KillRange = 40,
-    BackwardsMovement = false,
     FlickerLights = {
-        false, -- Enabled
+        false, -- Enabled/Disabled
         1, -- Time (seconds)
     },
     Cycles = {
         Min = 1,
-        Max = 4
+        Max = 500000000000000,
+        WaitTime = 2,
     },
     CamShake = {
-        true, -- Enabled
-        {30, 30, 0.1, 1}, -- Shake values (don't change if you don't know)
+        true, -- Enabled/Disabled
+        {2.5, 20, 0.1, 1}, -- Shake values (don't change if you don't know)
         100, -- Shake start distance (from Entity to you)
     },
     Jumpscare = {
-        false, -- Enabled ('false' if you don't want jumpscare)
+        true, -- Enabled/Disabled
         {
-            Image1 = "rbxassetid://115830521", -- Image1 url
-            Image2 = "rbxassetid://11708346230", -- Image2 url
-            Shake = false,
+            Image1 = "rbxassetid://5577595111", -- Image1 url
+            Image2 = "rbxassetid://10657365561", -- Image2 url
+            Shake = true,
             Sound1 = {
-                0, -- SoundId
+                4903742660, -- SoundId
                 { Volume = 0.5 }, -- Sound properties
             },
             Sound2 = {
-                5567523008, -- SoundId
+                3537873683, -- SoundId
                 { Volume = 0.5 }, -- Sound properties
             },
             Flashing = {
-                true, -- Enabled
-                Color3.fromRGB(6, 38, 135), -- Color
+                true, -- Enabled/Disabled
+                Color3.fromRGB(0, 255, 255), -- Color
             },
             Tease = {
-                false, -- Enabled ('false' if you don't want tease)
-                Min = 1,
-                Max = 3,
+                true, -- Enabled/Disabled
+                Min = 2,
+                Max = 2,
             },
         },
     },
-    CustomDialog = {"You died to Rebound...", "It appears at the next door and has a chance to stay there or run back to the latest door.", "He will come back many times after his initial spawn", "so hide every next door until it is safe.."}, -- Custom death message (can be as long as you want)
+    CustomDialog = {"You died to Hungered...", "A loud scream its your signal.", "Hide quick!"}, -- Custom death message
+
 })
 
------[[ Advanced ]]-----
-entity.Debug.OnEntitySpawned = function(entityModel)
-    print("Entity has spawned:", entityModel)
+
+-----[[  Debug -=- Advanced  ]]-----
+entityTable.Debug.OnEntitySpawned = function()
+    print("Entity has spawned:", entityTable)
 end
 
-entity.Debug.OnEntityDespawned = function(entityModel)
-    print("Entity has despawned:", entityModel)
+entityTable.Debug.OnEntityDespawned = function()
+    print("Entity has despawned:", entityTable)
 end
 
-entity.Debug.OnEntityStartMoving = function(entityModel)
-    print("Entity has started moving:", entityModel)
+entityTable.Debug.OnEntityStartMoving = function()
 end
 
-entity.Debug.OnEntityEnteredRoom = function(entityTable, room)
-    print("Entity:", "has entered room:", room)
+entityTable.Debug.OnEntityFinishedRebound = function()
+    print("Entity has finished rebound:", entityTable)
 end
 
-entity.Debug.OnEntityFinishedRebound = function(entityModel)
-    print("Entity finished rebound:", entityModel)
+entityTable.Debug.OnEntityEnteredRoom = function(room)
+    print("Entity:", entityTable, "has entered room:", room)
 end
 
-entity.Debug.OnDeath = function()
-    warn("You died.")
-    math.random(30,150)
-while true do end
+entityTable.Debug.OnLookAtEntity = function()
+    print("Player has looked at entity:", entityTable)
 end
-------------------------
+
+entityTable.Debug.OnDeath = function()
+    warn("Player has died.")
+    firesignal(game.ReplicatedStorage.EntityInfo.DeathHint.OnClientEvent, {"You Have Been Caught By Hunger...", "it lurks around figures library.", "Don't Get Caught"}, "Blue")
+end
+------------------------------------
+
 
 -- Run the created entity
-Creator.runEntity(entity)
+Spawner.runEntity(entityTable)
 end
-	end
 
-end
-end)()
+
+
+
+
          
 
 
@@ -2492,144 +2471,6 @@ end)
 
 
 
-game:GetService("ReplicatedStorage").GameData.LatestRoom:GetPropertyChangedSignal("Value"):Wait()
-game:GetService("ReplicatedStorage").GameData.LatestRoom:GetPropertyChangedSignal("Value"):Wait()
-game:GetService("ReplicatedStorage").GameData.LatestRoom:GetPropertyChangedSignal("Value"):Wait()
-game:GetService("ReplicatedStorage").GameData.LatestRoom:GetPropertyChangedSignal("Value"):Wait()
-game:GetService("ReplicatedStorage").GameData.LatestRoom:GetPropertyChangedSignal("Value"):Wait()
-game:GetService("ReplicatedStorage").GameData.LatestRoom:GetPropertyChangedSignal("Value"):Wait()
-game:GetService("ReplicatedStorage").GameData.LatestRoom:GetPropertyChangedSignal("Value"):Wait()
-game:GetService("ReplicatedStorage").GameData.LatestRoom:GetPropertyChangedSignal("Value"):Wait()
-game:GetService("ReplicatedStorage").GameData.LatestRoom:GetPropertyChangedSignal("Value"):Wait()
-game:GetService("ReplicatedStorage").GameData.LatestRoom:GetPropertyChangedSignal("Value"):Wait()
-game:GetService("ReplicatedStorage").GameData.LatestRoom:GetPropertyChangedSignal("Value"):Wait()
-game:GetService("ReplicatedStorage").GameData.LatestRoom:GetPropertyChangedSignal("Value"):Wait()
-game:GetService("ReplicatedStorage").GameData.LatestRoom:GetPropertyChangedSignal("Value"):Wait()
-game:GetService("ReplicatedStorage").GameData.LatestRoom:GetPropertyChangedSignal("Value"):Wait()
-game:GetService("ReplicatedStorage").GameData.LatestRoom:GetPropertyChangedSignal("Value"):Wait()
-game:GetService("ReplicatedStorage").GameData.LatestRoom:GetPropertyChangedSignal("Value"):Wait()
-game:GetService("ReplicatedStorage").GameData.LatestRoom:GetPropertyChangedSignal("Value"):Wait()
-game:GetService("ReplicatedStorage").GameData.LatestRoom:GetPropertyChangedSignal("Value"):Wait()
-game:GetService("ReplicatedStorage").GameData.LatestRoom:GetPropertyChangedSignal("Value"):Wait()
-game:GetService("ReplicatedStorage").GameData.LatestRoom:GetPropertyChangedSignal("Value"):Wait()
-game:GetService("ReplicatedStorage").GameData.LatestRoom:GetPropertyChangedSignal("Value"):Wait()
-game:GetService("ReplicatedStorage").GameData.LatestRoom:GetPropertyChangedSignal("Value"):Wait()
-game:GetService("ReplicatedStorage").GameData.LatestRoom:GetPropertyChangedSignal("Value"):Wait()
-game:GetService("ReplicatedStorage").GameData.LatestRoom:GetPropertyChangedSignal("Value"):Wait()
-game:GetService("ReplicatedStorage").GameData.LatestRoom:GetPropertyChangedSignal("Value"):Wait()
-game:GetService("ReplicatedStorage").GameData.LatestRoom:GetPropertyChangedSignal("Value"):Wait()
-game:GetService("ReplicatedStorage").GameData.LatestRoom:GetPropertyChangedSignal("Value"):Wait()
-game:GetService("ReplicatedStorage").GameData.LatestRoom:GetPropertyChangedSignal("Value"):Wait()
-game:GetService("ReplicatedStorage").GameData.LatestRoom:GetPropertyChangedSignal("Value"):Wait()
-game:GetService("ReplicatedStorage").GameData.LatestRoom:GetPropertyChangedSignal("Value"):Wait()
-game:GetService("ReplicatedStorage").GameData.LatestRoom:GetPropertyChangedSignal("Value"):Wait()
-game:GetService("ReplicatedStorage").GameData.LatestRoom:GetPropertyChangedSignal("Value"):Wait()
-game:GetService("ReplicatedStorage").GameData.LatestRoom:GetPropertyChangedSignal("Value"):Wait()
-game:GetService("ReplicatedStorage").GameData.LatestRoom:GetPropertyChangedSignal("Value"):Wait()
-game:GetService("ReplicatedStorage").GameData.LatestRoom:GetPropertyChangedSignal("Value"):Wait()
-game:GetService("ReplicatedStorage").GameData.LatestRoom:GetPropertyChangedSignal("Value"):Wait()
-game:GetService("ReplicatedStorage").GameData.LatestRoom:GetPropertyChangedSignal("Value"):Wait()
-game:GetService("ReplicatedStorage").GameData.LatestRoom:GetPropertyChangedSignal("Value"):Wait()
-game:GetService("ReplicatedStorage").GameData.LatestRoom:GetPropertyChangedSignal("Value"):Wait()
-game:GetService("ReplicatedStorage").GameData.LatestRoom:GetPropertyChangedSignal("Value"):Wait()
-game:GetService("ReplicatedStorage").GameData.LatestRoom:GetPropertyChangedSignal("Value"):Wait()
-game:GetService("ReplicatedStorage").GameData.LatestRoom:GetPropertyChangedSignal("Value"):Wait()
-game:GetService("ReplicatedStorage").GameData.LatestRoom:GetPropertyChangedSignal("Value"):Wait()
-game:GetService("ReplicatedStorage").GameData.LatestRoom:GetPropertyChangedSignal("Value"):Wait()
-game:GetService("ReplicatedStorage").GameData.LatestRoom:GetPropertyChangedSignal("Value"):Wait()
-game:GetService("ReplicatedStorage").GameData.LatestRoom:GetPropertyChangedSignal("Value"):Wait()
-game:GetService("ReplicatedStorage").GameData.LatestRoom:GetPropertyChangedSignal("Value"):Wait()
-game:GetService("ReplicatedStorage").GameData.LatestRoom:GetPropertyChangedSignal("Value"):Wait()
-game:GetService("ReplicatedStorage").GameData.LatestRoom:GetPropertyChangedSignal("Value"):Wait()
-local Spawner = loadstring(game:HttpGet("https://raw.githubusercontent.com/RegularVynixu/Utilities/main/Doors%20Entity%20Spawner/Source.lua"))()
--- Create entity
-local entityTable = Spawner.createEntity({
-    CustomName = "Hunger", -- Custom name of your entity
-    Model = "rbxassetid://11969147945", -- Can be GitHub file or rbxassetid
-    Speed = 38, -- Percentage, 100 = default Rush speed
-    DelayTime = 0, -- Time before starting cycles (seconds)
-    HeightOffset = 0,
-    CanKill = true,
-    KillRange = 2,
-    BackwardsMovement = true,
-    BreakLights = false,
-    FlickerLights = {
-        false, -- Enabled/Disabled
-        1, -- Time (seconds)
-    },
-    Cycles = {
-        Min = 1,
-        Max = 500000000000000,
-        WaitTime = 2,
-    },
-    CamShake = {
-        true, -- Enabled/Disabled
-        {2.5, 20, 0.1, 1}, -- Shake values (don't change if you don't know)
-        100, -- Shake start distance (from Entity to you)
-    },
-    Jumpscare = {
-        true, -- Enabled/Disabled
-        {
-            Image1 = "rbxassetid://5577595111", -- Image1 url
-            Image2 = "rbxassetid://10657365561", -- Image2 url
-            Shake = true,
-            Sound1 = {
-                4903742660, -- SoundId
-                { Volume = 0.5 }, -- Sound properties
-            },
-            Sound2 = {
-                3537873683, -- SoundId
-                { Volume = 0.5 }, -- Sound properties
-            },
-            Flashing = {
-                true, -- Enabled/Disabled
-                Color3.fromRGB(0, 255, 255), -- Color
-            },
-            Tease = {
-                true, -- Enabled/Disabled
-                Min = 2,
-                Max = 2,
-            },
-        },
-    },
-    CustomDialog = {"You died to Hungered...", "A loud scream its your signal.", "Hide quick!"}, -- Custom death message
-
-})
-
-
------[[  Debug -=- Advanced  ]]-----
-entityTable.Debug.OnEntitySpawned = function()
-    print("Entity has spawned:", entityTable)
-end
-
-entityTable.Debug.OnEntityDespawned = function()
-    print("Entity has despawned:", entityTable)
-end
-
-entityTable.Debug.OnEntityStartMoving = function()
-end
-
-entityTable.Debug.OnEntityFinishedRebound = function()
-    print("Entity has finished rebound:", entityTable)
-end
-
-entityTable.Debug.OnEntityEnteredRoom = function(room)
-    print("Entity:", entityTable, "has entered room:", room)
-end
-
-entityTable.Debug.OnLookAtEntity = function()
-    print("Player has looked at entity:", entityTable)
-end
-
-entityTable.Debug.OnDeath = function()
-    warn("Player has died.")
-    firesignal(game.ReplicatedStorage.EntityInfo.DeathHint.OnClientEvent, {"You Have Been Caught By Hunger...", "it lurks around on figures library.", "Don't Get Caught"}, "Blue")
-end
-------------------------------------
-
-
--- Run the created entity
-Spawner.runEntity(entityTable)
 
 
 
