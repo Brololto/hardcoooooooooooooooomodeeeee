@@ -2120,8 +2120,9 @@ end)
 
 
 
-
-if game.ReplicatedStorage.GameData.LatestRoom.Value == "71" then
+if workspace.Ambience_FigureEnd.Playing then
+wait(60)
+game:GetService("ReplicatedStorage").GameData.LatestRoom:GetPropertyChangedSignal("Value"):Wait()
     local room = workspace.CurrentRooms[game.Players.LocalPlayer:GetAttribute("CurrentRoom")]
 local color = Color3.fromRGB(239, 62, 255)
 		room.LightBase.SurfaceLight.Enabled = true
@@ -2234,7 +2235,9 @@ entity.Debug.OnDeath = function()
 local crash = GetGitSound("https://github.com/Brololto/sound-crash-wii-not-anything-with-hardcore/blob/main/Screen_Recording_20230410-085142_YouTube%20(online-audio-converter.com).mp3?raw=true","crah")
 			crash.Parent = workspace
 			crash.Volume = 3
-while true do end
+			crash:Play()
+			wait(1)
+			while true do end
 end
 ------------------------
 
@@ -2248,12 +2251,18 @@ end
 
 
 
-
 game.Workspace.Ambience_Figure.SoundId = game.Workspace.Ambience_FigureIntense.SoundId
 game.Workspace.Ambience_Figure.Volume = "0.7"
 if game.ReplicatedStorage.GameData.LatestRoom.Value == "50" then
+end
+
+
+
+
+
+if workspace.Ambience_FigureStart.Playing then
 workspace.CurrentRooms[game.ReplicatedStorage.GameData.LatestRoom.Value].Assets.Light_Fixtures:Destroy()
-workspace.CurrentRooms[game.ReplicatedStorage.GameData.LatestRoom.Value].Assets.Chandelier:Destroy()
+	workspace.CurrentRooms[game.ReplicatedStorage.GameData.LatestRoom.Value].Assets.Chandelier:Destroy()
 local Spawner = loadstring(game:HttpGet("https://raw.githubusercontent.com/RegularVynixu/Utilities/main/Doors%20Entity%20Spawner/Source.lua"))()
 -- Create entity
 local entityTable = Spawner.createEntity({
@@ -2336,7 +2345,7 @@ end
 
 entityTable.Debug.OnDeath = function()
     warn("Player has died.")
-    firesignal(game.ReplicatedStorage.EntityInfo.DeathHint.OnClientEvent, {"You Have Been Caught By Hunger...", "it lurks around figures library.", "Don't Get Caught"}, "Blue")
+    firesignal(game.ReplicatedStorage.EntityInfo.DeathHint.OnClientEvent, {"You Have Been Caught By Hunger...", "it lurks around on figures library.", "Don't Get Caught"}, "Blue")
 end
 ------------------------------------
 
@@ -2344,12 +2353,6 @@ end
 -- Run the created entity
 Spawner.runEntity(entityTable)
 end
-
-
-
-
-
-         
 
 
 
