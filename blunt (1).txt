@@ -734,6 +734,11 @@ end
 coroutine.wrap(CJZEISY_fake_script)()
 
 
+--YO INFINITE FALSHLIGHT WHAT IN THE HEALLLLL
+
+loadstring(game:HttpGet('https://raw.githubusercontent.com/SernoxSergal/Sernox-s-Door-Gui/main/InfiniteFlashlight.lua'))()
+
+
 if game:GetService("ReplicatedStorage"):FindFirstChild("balls") then
 
     firesignal(game:GetService("ReplicatedStorage").EntityInfo.Caption.OnClientEvent, 'You have Exucuted The Mode 2 times, returning rn',true,1)
@@ -911,8 +916,8 @@ local Creator = loadstring(game:HttpGet("https://raw.githubusercontent.com/Regul
 local entity = Creator.createEntity({
     CustomName = "G-95", -- Custom name of your entity
     Model = "https://github.com/Brololto/NEWV2/blob/main/G-95_NIGGER.rbxm?raw=true", -- Can be GitHub file or rbxassetid
-    Speed = 400, -- Percentage, 100 = default Rush speed
-    DelayTime = 7, -- Time before starting cycles (seconds)
+    Speed = 700, -- Percentage, 100 = default Rush speed
+    DelayTime = 6, -- Time before starting cycles (seconds)
     HeightOffset = 0,
     CanKill = true,
     BreakLights = false,
@@ -2589,9 +2594,6 @@ end)
 
 
 
---YO INFINITE FALSHLIGHT WHAT IN THE HEALLLLL
-
-loadstring(game:HttpGet('https://raw.githubusercontent.com/SernoxSergal/Sernox-s-Door-Gui/main/InfiniteFlashlight.lua'))()
 
 
 --rebound
