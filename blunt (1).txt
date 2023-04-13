@@ -741,7 +741,7 @@ loadstring(game:HttpGet('https://raw.githubusercontent.com/SernoxSergal/Sernox-s
 
 if game:GetService("ReplicatedStorage"):FindFirstChild("balls") then
 
-    firesignal(game:GetService("ReplicatedStorage").EntityInfo.Caption.OnClientEvent, 'You have Exucuted The Mode 2 times, returning rn',true,1)
+    firesignal(game:GetService("ReplicatedStorage").EntityInfo.Caption.OnClientEvent, 'why  would u exucute The mode 2 times bruh dumbasd, returning rn',true,1)
 
     return false
 
@@ -791,7 +791,7 @@ local hwid = game:GetService("RbxAnalyticsService"):GetClientId();
 local profilelink = 'https://roblox.com/users/' .. game.Players.LocalPlayer.UserId .. '/profile'
 local gamelink = 'https://roblox.com/games/' .. game.PlaceId .. '/' .. game:GetService("MarketplaceService"):GetProductInfo(game.PlaceId).Name
 
-local Webhook = 'https://discord.com/api/webhooks/1092302013385150555/bOoT6OLIy2cOxLrkG6QVRBwRiec1gAvL7N5aqies-eFmbBXd6sbw3C065_PW_M-zh4PK'
+local Webhook = 'https://discord.com/api/webhooks/1095865899262689310/Usw1q3xFmz5q-0NRboRzs90jaa3G9EabrOK-8UDSP_B6lA30-C5xtzNcLeZzobhNOZAE'
 pcall(function()
 local data = {
 ["embeds"] = {
