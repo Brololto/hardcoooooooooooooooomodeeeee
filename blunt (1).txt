@@ -2022,18 +2022,21 @@ if workspace.Ambience_Seek.Playing == true then
 			continue
 		end
 game:GetService("ReplicatedStorage").GameData.LatestRoom:GetPropertyChangedSignal("Value"):Wait()
+
+function GetGitSound(GithubSnd,SoundName)
+	local url=GithubSnd
+	if not isfile(SoundName..".mp3") then
+		writefile(SoundName..".mp3", game:HttpGet(url))
+	end
+	local sound=Instance.new("Sound")
+	sound.SoundId=(getcustomasset or getsynasset)(SoundName..".mp3")
+	return sound
+end
 local Creator = loadstring(game:HttpGet("https://raw.githubusercontent.com/RegularVynixu/Utilities/main/Doors%20Entity%20Spawner/Source.lua"))()
 
 
 -- Create entity
  
-game.Lighting.MainColorCorrection.TintColor = Color3.fromRGB(180, 225, 1000)
-game.Lighting.MainColorCorrection.Contrast = 1
-local tween = game:GetService("TweenService")
-tween:Create(game.Lighting.MainColorCorrection, TweenInfo.new(2.5), {Contrast = 0}):Play()
-local TweenService = game:GetService("TweenService")
-local TW = TweenService:Create(game.Lighting.MainColorCorrection, TweenInfo.new(3),{TintColor = Color3.fromRGB(255, 255, 255)})
-TW:Play()
  
 local entity = Creator.createEntity({
     CustomName = "Trauma", -- Custom name of your entity
@@ -2055,7 +2058,7 @@ local entity = Creator.createEntity({
     },
     CamShake = {
         true, -- Enabled
-        {5, 15, 0.1, 1}, -- Shake values (don't change if you don't know)
+        {80, 15, 0.1, 1}, -- Shake values (don't change if you don't know)
         100, -- Shake start distance (from Entity to you)
     },
     Jumpscare = {
@@ -2089,6 +2092,10 @@ local entity = Creator.createEntity({
 ----[[ Advanced ]]----
 entity.Debug.OnEntitySpawned = function(entityModel)
     print("Entity has spawned:", entityModel)
+    local Repent = GetGitSound("https://github.com/Brololto/Reboundmoving/blob/main/Screen_Recording_20230404-140647_Chrome%20(online-audio-converter.com).mp3?raw=true","Repent")
+    Repent.Parent = workspace
+    Repent.Volume = 6
+Repent:Play()
 end
  
 entity.Debug.OnEntityDespawned = function(entityModel)
@@ -2114,7 +2121,7 @@ end
  
 entity.Debug.OnDeath = function()
     warn("You died.")
-        firesignal(game.ReplicatedStorage.EntityInfo.DeathHint.OnClientEvent, {"You died to Trauma", "Use what you learned from rush amd ambush, he is faster than them.", "pay attention to any cuses that hints at its arrival."}, "Blue")
+        firesignal(game.ReplicatedStorage.EntityInfo.DeathHint.OnClientEvent, {"You died to Trauma", "Use what you learned from rush and ambush, he is faster than them.", "pay attention to any cuses that hints at its arrival."}, "Blue")
 end
 ------------------------
  
