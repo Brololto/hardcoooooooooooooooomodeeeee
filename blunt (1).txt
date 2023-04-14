@@ -2042,7 +2042,7 @@ local entity = Creator.createEntity({
     CustomName = "Trauma", -- Custom name of your entity
     Model = "https://github.com/Brololto/NEWV2/blob/main/BRAIN_DAMAGED_TRAUMA.rbxm?raw=true", -- Can be GitHub file or rbxassetid
     Speed = 600, -- Percentage, 100 = default Rush speed
-    DelayTime = 3, -- Time before starting cycles (seconds)
+    DelayTime = 9, -- Time before starting cycles (seconds)
     HeightOffset = 0,
     CanKill = true,
     BreakLights = true,
@@ -2092,7 +2092,7 @@ local entity = Creator.createEntity({
 ----[[ Advanced ]]----
 entity.Debug.OnEntitySpawned = function(entityModel)
     print("Entity has spawned:", entityModel)
-    local Repent = GetGitSound("https://github.com/Brololto/Reboundmoving/blob/main/Screen_Recording_20230404-140647_Chrome%20(online-audio-converter.com).mp3?raw=true","Repent")
+    local Repent = GetGitSound("https://github.com/Brololto/TraumaDistoredRepentV3/blob/main/Screen_Recording_20230411-184126_YouTube%20(online-audio-converter.com).mp3?raw=true","RepentV3")
     Repent.Parent = workspace
     Repent.Volume = 6
 Repent:Play()
