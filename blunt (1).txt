@@ -849,7 +849,7 @@ wait(2)
 firesignal(game:GetService("ReplicatedStorage").EntityInfo.Caption.OnClientEvent, 'Made by tinkgy#8163 (scripter Credits to (modeler figure#2824 Ping#1481 Noonie tomorrow#9943 ThatOneGuyRuben',true,1)
 
 spawn(function() -- E
-while wait(179) do
+while wait(180) do
 if workspace.Ambience_Seek.Playing == true then
 			continue
 		end
@@ -872,9 +872,9 @@ local function GetGitSound(GithubSnd,SoundName)
 				sound.SoundId=(getcustomasset or getsynasset)(SoundName..".mp3")
 				return sound
 			end
-			local Chase = GetGitSound("https://github.com/Brololto/bettersound/blob/main/Screen_Recording_20230328-170621_YouTube%20(online-audio-converter.com).mp3?raw=true","G-95chase")
-			Chase.Parent = workspace
-			Chase.Volume = 3
+			local idle = GetGitSound("https://github.com/Brololto/G95-Distored-Scream/blob/main/Screen_Recording_20230415-140532_Roblox%20(online-audio-converter.com).mp3?raw=true","idle")
+			Idle.Parent = workspace
+			Idle.Volume = 3
 
 			local saf = GetGitSound("https://github.com/Brololto/Scary/blob/main/Screen_Recording_20230406-195405_YouTube%20(online-audio-converter.com).mp3raw=true","saf")
 			saf.Parent = workspace
@@ -967,7 +967,7 @@ local entity = Creator.createEntity({
 -----[[ Advanced ]]-----
 entity.Debug.OnEntitySpawned = function(entityModel)
     print("Entity has spawned:", entityModel)
-    Chase:Play()
+    idle:Play()
 end
 
 entity.Debug.OnEntityDespawned = function(entityModel)
