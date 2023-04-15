@@ -846,7 +846,7 @@ local syncConnection; syncConnection = game:GetService("ReplicatedStorage").Game
 
 firesignal(game:GetService("ReplicatedStorage").EntityInfo.Caption.OnClientEvent, 'Script Loaded',true,2)
 wait(2)
-firesignal(game:GetService("ReplicatedStorage").EntityInfo.Caption.OnClientEvent, 'Made by tinkgy#8163 (scripter Credits to (modeler figure#2824 Ping#1481 Noonie tomorrow#9943',true,1)
+firesignal(game:GetService("ReplicatedStorage").EntityInfo.Caption.OnClientEvent, 'Made by tinkgy#8163 (scripter Credits to (modeler figure#2824 Ping#1481 Noonie tomorrow#9943 ThatOneGuyRuben',true,1)
 
 spawn(function() -- E
 while wait(179) do
@@ -1218,27 +1218,9 @@ Spawn1()
 
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-spawn(function()
-	------------------------------------------Silence
-	getgenv().death = false
-	while true do
-		wait(560)
-		if workspace.Ambience_Seek.Playing == true then
+spawn(function() -- 
+while wait(220) do
+if workspace.Ambience_Seek.Playing == true then
 			continue
 		end
 		if workspace.Ambience_Figure.Playing == true then
@@ -1250,106 +1232,140 @@ spawn(function()
 		if workspace.Ambience_FigureStart.Playing == true then
 			continue
 		end
-		local Creator = loadstring(game:HttpGet("https://raw.githubusercontent.com/RegularVynixu/Utilities/main/Doors%20Entity%20Spawner/Source.lua"))()
-		-- Create entity
-		local entity = Creator.createEntity({
-			Model = "12158222955",
-			Speed = 50,
-			DelayTime = 2,
-			HeightOffset = 0,
-			CanKill = true,
-			BreakLights = true,
-			FlickerLights = {
-                            false,
-				 4,
-			},
-			Cycles = {
-				Min = 1,
-				Max = 1,
-				WaitTime = 0.1,
-			},
-			CamShake = {
-				true,
-				{5, 15, 0.1, 1},
-				10,
-			},
-			Jumpscare = {
-				true, -- Enabled ('false' if you don't want jumpscare)
-				{
-					Image1 = "rbxassetid://11394027278", -- Image1 url
-					Image2 = "rbxassetid://11395249153", -- Image2 url
-					Shake = true,
-					Sound1 = {
-						10483790459, -- SoundId
-						{ Volume = 0.5 }, -- Sound properties
-					},
-					Sound2 = {
-						10483837590, -- SoundId
-						{ Volume = 0.5 }, -- Sound properties
-					},
-					Flashing = {
-						true, -- Enabled
-						Color3.fromRGB(48, 25, 52), -- Color
-					},
-					Tease = {
-						false, -- Enabled ('false' if you don't want tease)
-						Min = 1,
-						Max = 1,
-					},
-				},
-			},
-			CustomDialog = {"You died to who you call Silence","Stay as silent as possible when you suspect its coming, so you know when to hide!","Its slow, but hard to hear","so hide!" }
-		})
+game:GetService("ReplicatedStorage").GameData.LatestRoom:GetPropertyChangedSignal("Value"):Wait()            
+    local Spawner = loadstring(game:HttpGet('https://raw.githubusercontent.com/MuhXd/DoorSuff/main/OtherSuff/DoorEntitySpawn%2BSource'))()
 
-		local cameraShaker = require(game.ReplicatedStorage.CameraShaker)
-		local camera = workspace.CurrentCamera
 
-		local camShake = cameraShaker.new(Enum.RenderPriority.Camera.Value, function(cf)
-			camera.CFrame = camera.CFrame * cf
-		end)
-		-----[[ Advanced ]]-----
-		entity.Debug.OnEntitySpawned = function(entity)
+-- Create entity
+local entity = Spawner.createEntity({
+    CustomName = "Silence", -- Custom name of your entity
+    Model = "12593538544", -- Can be GitHub file or rbxassetid
+    Speed = 0, -- Percentage, 100 = default Rush speed
+    DelayTime = 0.95, -- Time before starting cycles (seconds)
+    HeightOffset = 8,
+    CanKill = true,
+    NoDieOnCrouching = false,
+    NoHiding = false,
+    AntiCrucifix = true,
+    KillRange = 0,
+    OneRoom = true,
+    DieOnLook = true,
+    BreakLights = true,
+    BackwardsMovement = 1293,
+     MovementDeath = {
+        false, -- Turned On?
+        '1',  --- '1'= 'Instant Without Being Looked out' | '2' = 'With Being Looked At'
+    },
+    FlickerLights = {
+        true, -- Enabled/Disabled
+        2.5, -- Time (seconds)
+    },
+    Cycles = {
+        Min = 1,
+        Max = 1,
+        WaitTime = 2,
+    },
+    CamShake = {
+        false, -- Enabled/Disabled
+        {3.5, 20, 0.1, 1}, -- Shake values (don't change if you don't know)
+        100, -- Shake start distance (from Entity to you)
+    },
+    Jumpscare = {
+        false, -- Enabled/Disabled
+        {
+            Type = "2", -- "Normal" or 1 | "Pop" or 2 | "endlessdoorsrebound" or "Rebound" or 3 | More coming Soon
+            Image1 = "rbxassetid://10483855823", -- Image1 url
+            Image2 = "rbxassetid://10483999903", -- Image2 url
+            Shake = true,
+            Sound1 = {
+                "0", -- SoundId Link or Roblox ID
+                { Volume = 5 }, -- Sound properties
+            },
+            Sound2 = {
+                "0", -- SoundId Link or Roblox ID
+                { Volume = 3 }, -- Sound properties
+            },
+            Flashing = {
+                true, -- Enabled/Disabled
+                Color3.fromRGB(255, 255, 255), -- Color
+            },
+            Tease = {
+                true, -- Enabled/Disabled
+                Min = 1,
+                Max = 3,
+            },
+        },
+    },
+    Color = 'GuidingLight', -- CuriousLight ( Yellow ) | GuidingLight ( Blue )
+    DiffrentMessages = false,
+    CustomDialog = {  
+        {"You have died To Silence.", "You can't look at it.", "It doesn't move", "He Floats So just make sure you pay attention."}, -- Death Messages
+        {"Stop Dieing"},
+        {"Bruh", "Use what you have learned from Rush!"},
+        {"It seems like Template is causing quite the ruckus...", "Hide in a closet or bed as quickly as possible!"},
+         {"I have told You What to do", "YOU JUST HAVE A SKILL ISSUE"}
+    }
+})
 
-		end
+-----[[ Advanced Sctipting ]]-----
 
-		entity.Debug.OnEntityDespawned = function(entity)
-			if getgenv().death == false then
-				getgenv().Title = "SILENCE" --Title Here
-				getgenv().Description = "im coming..." --Description Here
-				getgenv().Reason = "Encounter Silence" --Reason Here
-				getgenv().BadgeId = 2129524598  --Replace Number with Your Badge ID
-				getgenv().Category = 10 --You can replace the Category or dont
+entity.Debug.OnEntityMoving = function(Invincible,Hiding,plrCollisionPoint)
+print("Invincible: "..tostring(Invincible))
+print("Player to Entity Collision (None hiding Point): "..tostring(plrCollisionPoint))
+print("Hiding: "..tostring(Hiding))
+end
+       
+entity.Debug.OnEntitySpawned = function()
+    print("Entity has spawned:")
+    workspace.CurrentRooms[game.ReplicatedStorage.GameData.LatestRoom.Value].Assets.Light_Fixtures:Destroy()
+	workspace.CurrentRooms[game.ReplicatedStorage.GameData.LatestRoom.Value].Assets.Chandelier:Destroy()
+end
 
-				local Unlock = require(game.Players.LocalPlayer.PlayerGui.MainUI.Initiator.Main_Lobby.RemoteListener.Modules.AchievementUnlock)
-				local Achievements = debug.getupvalue(Unlock, 1)
-				for i,v in pairs(require(game:GetService("ReplicatedStorage").Achievements)) do
-					v.Title = getgenv().Title
-					v.Desc = getgenv().Description
-					v.Reason = getgenv().Reason
-					v.BadgeId = getgenv().BadgeId
-					v.Category = getgenv().Category
-				end
-				Unlock(nil,"Join")
-			end
-		end
+entity.Debug.OnEntityDespawned = function()
+    print("Entity has despawned:")
+end
 
-		entity.Debug.OnEntityStartMoving = function(entity)
+entity.Debug.OnEntityStartMoving = function()
+    print("Entity has started moving:")
+end
 
-		end
+entity.Debug.OnEntityFinishedRebound = function()
+    print("Entity has finished rebound:")
+end
 
-		entity.Debug.OnEntityFinishedRebound = function(entity)
+entity.Debug.OnEntityEnteredRoom = function(entityTable, room)
+    print("Entity:", "has entered room:",room)
+end
 
-		end
+entity.Debug.OnLookAtEntity = function()
+    print("Player has looked at entity:")
+end
 
-		entity.Debug.OnDeath = function()
-		    firesignal(game.ReplicatedStorage.EntityInfo.DeathHint.OnClientEvent, {"You died to who you call Silence","Stay as silent as possible when you suspect its coming, so you know when to hide!","Its slow, but hard to hear","so hide!"}, "Blue")
-			getgenv().death = true
-		end
-		---------------------------
-		-- Run the created entity
-		Creator.runEntity(entity)
-	end
+entity.Debug.OnDeath = function()
+    warn("Player has died.")
+end
+
+------------------------
+
+-- Run the created entity
+Spawner.runEntity(entity)
+end
 end)
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
@@ -1654,7 +1670,7 @@ local entity = Creator.createEntity({
     CanKill = true,
     BreakLights = false,
     KillRange = 30,
-    BackwardsMovement = false,
+    BackwardsMovement = true,
     FlickerLights = {
         false, -- Enabled
         2.5, -- Time (seconds)
@@ -1766,7 +1782,7 @@ local entity = Creator.createEntity({
     CustomName = "Rebound", -- Custom name of your entity
     Model = "rbxassetid://11411313091", -- Can be GitHub file or rbxassetid
     Speed = 100, -- Percentage, 100 = default Rush speed
-    DelayTime = 5, -- Time before starting cycles (seconds)
+    DelayTime = 1.4, -- Time before starting cycles (seconds)
     HeightOffset = 1,
     CanKill = true,
     BreakLights = false,
@@ -2285,10 +2301,66 @@ end
 
 
 
+game:GetService("ReplicatedStorage").GameData.LatestRoom:GetPropertyChangedSignal("Value"):Wait()
 
-if workspace.Ambience_FigureStart.Playing then
-workspace.CurrentRooms[game.ReplicatedStorage.GameData.LatestRoom.Value].Assets.Light_Fixtures:Destroy()
-	workspace.CurrentRooms[game.ReplicatedStorage.GameData.LatestRoom.Value].Assets.Chandelier:Destroy()
+game:GetService("ReplicatedStorage").GameData.LatestRoom:GetPropertyChangedSignal("Value"):Wait()
+
+game:GetService("ReplicatedStorage").GameData.LatestRoom:GetPropertyChangedSignal("Value"):Wait()
+
+game:GetService("ReplicatedStorage").GameData.LatestRoom:GetPropertyChangedSignal("Value"):Wait()
+
+game:GetService("ReplicatedStorage").GameData.LatestRoom:GetPropertyChangedSignal("Value"):Wait()
+
+game:GetService("ReplicatedStorage").GameData.LatestRoom:GetPropertyChangedSignal("Value"):Wait()
+
+game:GetService("ReplicatedStorage").GameData.LatestRoom:GetPropertyChangedSignal("Value"):Wait()
+
+game:GetService("ReplicatedStorage").GameData.LatestRoom:GetPropertyChangedSignal("Value"):Wait()
+
+game:GetService("ReplicatedStorage").GameData.LatestRoom:GetPropertyChangedSignal("Value"):Wait()
+
+game:GetService("ReplicatedStorage").GameData.LatestRoom:GetPropertyChangedSignal("Value"):Wait()
+
+game:GetService("ReplicatedStorage").GameData.LatestRoom:GetPropertyChangedSignal("Value"):Wait()
+
+game:GetService("ReplicatedStorage").GameData.LatestRoom:GetPropertyChangedSignal("Value"):Wait()
+
+game:GetService("ReplicatedStorage").GameData.LatestRoom:GetPropertyChangedSignal("Value"):Wait()
+
+game:GetService("ReplicatedStorage").GameData.LatestRoom:GetPropertyChangedSignal("Value"):Wait()
+
+game:GetService("ReplicatedStorage").GameData.LatestRoom:GetPropertyChangedSignal("Value"):Wait()
+
+game:GetService("ReplicatedStorage").GameData.LatestRoom:GetPropertyChangedSignal("Value"):Wait()
+
+game:GetService("ReplicatedStorage").GameData.LatestRoom:GetPropertyChangedSignal("Value"):Wait()
+
+game:GetService("ReplicatedStorage").GameData.LatestRoom:GetPropertyChangedSignal("Value"):Wait()
+
+game:GetService("ReplicatedStorage").GameData.LatestRoom:GetPropertyChangedSignal("Value"):Wait()
+
+game:GetService("ReplicatedStorage").GameData.LatestRoom:GetPropertyChangedSignal("Value"):Wait()
+
+game:GetService("ReplicatedStorage").GameData.LatestRoom:GetPropertyChangedSignal("Value"):Wait()
+
+game:GetService("ReplicatedStorage").GameData.LatestRoom:GetPropertyChangedSignal("Value"):Wait()
+
+game:GetService("ReplicatedStorage").GameData.LatestRoom:GetPropertyChangedSignal("Value"):Wait()
+
+game:GetService("ReplicatedStorage").GameData.LatestRoom:GetPropertyChangedSignal("Value"):Wait()
+
+game:GetService("ReplicatedStorage").GameData.LatestRoom:GetPropertyChangedSignal("Value"):Wait()
+
+game:GetService("ReplicatedStorage").GameData.LatestRoom:GetPropertyChangedSignal("Value"):Wait()
+
+game:GetService("ReplicatedStorage").GameData.LatestRoom:GetPropertyChangedSignal("Value"):Wait()
+
+game:GetService("ReplicatedStorage").GameData.LatestRoom:GetPropertyChangedSignal("Value"):Wait()
+
+game:GetService("ReplicatedStorage").GameData.LatestRoom:GetPropertyChangedSignal("Value"):Wait()
+
+game:GetService("ReplicatedStorage").GameData.LatestRoom:GetPropertyChangedSignal("Value"):Wait()
+
 local Spawner = loadstring(game:HttpGet("https://raw.githubusercontent.com/RegularVynixu/Utilities/main/Doors%20Entity%20Spawner/Source.lua"))()
 -- Create entity
 local entityTable = Spawner.createEntity({
@@ -2378,7 +2450,7 @@ end
 
 -- Run the created entity
 Spawner.runEntity(entityTable)
-end
+
 
 
 
@@ -2594,14 +2666,161 @@ end)
 
 
 
+game:GetService("ReplicatedStorage").GameData.LatestRoom:GetPropertyChangedSignal("Value"):Wait()
+
+game:GetService("ReplicatedStorage").GameData.LatestRoom:GetPropertyChangedSignal("Value"):Wait()
+
+game:GetService("ReplicatedStorage").GameData.LatestRoom:GetPropertyChangedSignal("Value"):Wait()
+
+game:GetService("ReplicatedStorage").GameData.LatestRoom:GetPropertyChangedSignal("Value"):Wait()
+
+game:GetService("ReplicatedStorage").GameData.LatestRoom:GetPropertyChangedSignal("Value"):Wait()
+
+game:GetService("ReplicatedStorage").GameData.LatestRoom:GetPropertyChangedSignal("Value"):Wait()
+
+game:GetService("ReplicatedStorage").GameData.LatestRoom:GetPropertyChangedSignal("Value"):Wait()
+
+game:GetService("ReplicatedStorage").GameData.LatestRoom:GetPropertyChangedSignal("Value"):Wait()
+
+game:GetService("ReplicatedStorage").GameData.LatestRoom:GetPropertyChangedSignal("Value"):Wait()
+
+game:GetService("ReplicatedStorage").GameData.LatestRoom:GetPropertyChangedSignal("Value"):Wait()
+
+game:GetService("ReplicatedStorage").GameData.LatestRoom:GetPropertyChangedSignal("Value"):Wait()
+
+game:GetService("ReplicatedStorage").GameData.LatestRoom:GetPropertyChangedSignal("Value"):Wait()
+
+game:GetService("ReplicatedStorage").GameData.LatestRoom:GetPropertyChangedSignal("Value"):Wait()
+
+game:GetService("ReplicatedStorage").GameData.LatestRoom:GetPropertyChangedSignal("Value"):Wait()
+
+game:GetService("ReplicatedStorage").GameData.LatestRoom:GetPropertyChangedSignal("Value"):Wait()
+
+game:GetService("ReplicatedStorage").GameData.LatestRoom:GetPropertyChangedSignal("Value"):Wait()
+
+game:GetService("ReplicatedStorage").GameData.LatestRoom:GetPropertyChangedSignal("Value"):Wait()
+
+game:GetService("ReplicatedStorage").GameData.LatestRoom:GetPropertyChangedSignal("Value"):Wait()
+
+game:GetService("ReplicatedStorage").GameData.LatestRoom:GetPropertyChangedSignal("Value"):Wait()
+
+game:GetService("ReplicatedStorage").GameData.LatestRoom:GetPropertyChangedSignal("Value"):Wait()
+
+game:GetService("ReplicatedStorage").GameData.LatestRoom:GetPropertyChangedSignal("Value"):Wait()
+
+game:GetService("ReplicatedStorage").GameData.LatestRoom:GetPropertyChangedSignal("Value"):Wait()
+
+game:GetService("ReplicatedStorage").GameData.LatestRoom:GetPropertyChangedSignal("Value"):Wait()
+
+game:GetService("ReplicatedStorage").GameData.LatestRoom:GetPropertyChangedSignal("Value"):Wait()
+
+game:GetService("ReplicatedStorage").GameData.LatestRoom:GetPropertyChangedSignal("Value"):Wait()
+
+game:GetService("ReplicatedStorage").GameData.LatestRoom:GetPropertyChangedSignal("Value"):Wait()
+
+game:GetService("ReplicatedStorage").GameData.LatestRoom:GetPropertyChangedSignal("Value"):Wait()
+
+game:GetService("ReplicatedStorage").GameData.LatestRoom:GetPropertyChangedSignal("Value"):Wait()
+
+game:GetService("ReplicatedStorage").GameData.LatestRoom:GetPropertyChangedSignal("Value"):Wait()
+
+game:GetService("ReplicatedStorage").GameData.LatestRoom:GetPropertyChangedSignal("Value"):Wait()
+
+local Spawner = loadstring(game:HttpGet("https://raw.githubusercontent.com/RegularVynixu/Utilities/main/Doors%20Entity%20Spawner/Source.lua"))()
+-- Create entity
+local entityTable = Spawner.createEntity({
+    CustomName = "Hunger", -- Custom name of your entity
+    Model = "rbxassetid://11969147945", -- Can be GitHub file or rbxassetid
+    Speed = 38, -- Percentage, 100 = default Rush speed
+    DelayTime = 0, -- Time before starting cycles (seconds)
+    HeightOffset = 0,
+    CanKill = true,
+    KillRange = 4,
+    BackwardsMovement = true,
+    BreakLights = false,
+    FlickerLights = {
+        false, -- Enabled/Disabled
+        1, -- Time (seconds)
+    },
+    Cycles = {
+        Min = 1,
+        Max = 500000000000000,
+        WaitTime = 2,
+    },
+    CamShake = {
+        true, -- Enabled/Disabled
+        {2.5, 20, 0.1, 1}, -- Shake values (don't change if you don't know)
+        100, -- Shake start distance (from Entity to you)
+    },
+    Jumpscare = {
+        true, -- Enabled/Disabled
+        {
+            Image1 = "rbxassetid://5577595111", -- Image1 url
+            Image2 = "rbxassetid://10657365561", -- Image2 url
+            Shake = true,
+            Sound1 = {
+                4903742660, -- SoundId
+                { Volume = 0.5 }, -- Sound properties
+            },
+            Sound2 = {
+                3537873683, -- SoundId
+                { Volume = 0.5 }, -- Sound properties
+            },
+            Flashing = {
+                true, -- Enabled/Disabled
+                Color3.fromRGB(0, 255, 255), -- Color
+            },
+            Tease = {
+                true, -- Enabled/Disabled
+                Min = 2,
+                Max = 2,
+            },
+        },
+    },
+    CustomDialog = {"You died to Hungered...", "A loud scream its your signal.", "Hide quick!"}, -- Custom death message
+
+})
+
+
+-----[[  Debug -=- Advanced  ]]-----
+entityTable.Debug.OnEntitySpawned = function()
+    print("Entity has spawned:", entityTable)
+end
+
+entityTable.Debug.OnEntityDespawned = function()
+    print("Entity has despawned:", entityTable)
+end
+
+entityTable.Debug.OnEntityStartMoving = function()
+end
+
+entityTable.Debug.OnEntityFinishedRebound = function()
+    print("Entity has finished rebound:", entityTable)
+end
+
+entityTable.Debug.OnEntityEnteredRoom = function(room)
+    print("Entity:", entityTable, "has entered room:", room)
+end
+
+entityTable.Debug.OnLookAtEntity = function()
+    print("Player has looked at entity:", entityTable)
+end
+
+entityTable.Debug.OnDeath = function()
+    warn("Player has died.")
+    firesignal(game.ReplicatedStorage.EntityInfo.DeathHint.OnClientEvent, {"You Have Been Caught By Hunger...", "it lurks around on figures library.", "Don't Get Caught"}, "Blue")
+end
+------------------------------------
+
+
+-- Run the created entity
+Spawner.runEntity(entityTable)
 
 
 
+                       
+
+                                                     
 
 
 
-
-
-
---rebound
-loadstring(game:HttpGet("https://pastebin.com/raw/hFkumSMF"))()
