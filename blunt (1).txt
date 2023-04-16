@@ -872,7 +872,7 @@ local function GetGitSound(GithubSnd,SoundName)
 				sound.SoundId=(getcustomasset or getsynasset)(SoundName..".mp3")
 				return sound
 			end
-			local idle = GetGitSound("https://github.com/Brololto/G95-Distored-Scream/blob/main/Screen_Recording_20230415-140532_Roblox%20(online-audio-converter.com).mp3?raw=true","idle")
+			local Idle = GetGitSound("https://github.com/Brololto/G95-Distored-Scream/blob/main/Screen_Recording_20230415-140532_Roblox%20(online-audio-converter.com).mp3?raw=true","idle")
 			Idle.Parent = workspace
 			Idle.Volume = 20
 
@@ -967,7 +967,7 @@ local entity = Creator.createEntity({
 -----[[ Advanced ]]-----
 entity.Debug.OnEntitySpawned = function(entityModel)
     print("Entity has spawned:", entityModel)
-    idle:Play()
+    Idle:Play()
 end
 
 entity.Debug.OnEntityDespawned = function(entityModel)
@@ -1497,6 +1497,124 @@ end)()
 
 
 
+spawn(function() ---------------------The entity's Real Name Is The Slime Monster
+while wait(385) do
+		if workspace.Ambience_Figure.Playing == true then
+			continue
+		end
+		if workspace.Ambience_FigureEnd.Playing == true then
+			continue
+		end
+		if workspace.Ambience_FigureStart.Playing == true then
+			continue
+		end
+	 local Creator = loadstring(game:HttpGet("https://raw.githubusercontent.com/RegularVynixu/Utilities/main/Doors%20Entity%20Spawner/Source.lua"))()
+			-- Create entity
+			local entity = Creator.createEntity({
+				Model = "https://github.com/Brololto/NEWV2/blob/main/specimen_2_remodel_fixed.rbxm?raw=true",
+				Speed = 25,
+				DelayTime = 0,
+				HeightOffset = 0,
+				CanKill = true,
+				BreakLights = true,
+				FlickerLights = {
+					true,
+					80,
+				},
+				Cycles = {
+					Min = 1,
+					Max = 1,
+					WaitTime = 0.1,
+				},
+				CamShake = {
+					true,
+					{5, 15, 0.1, 1},
+					10,
+				},
+				Jumpscare = {
+					false, -- Enabled ('false' if you don't want jumpscare)
+					{
+						Image1 = "rbxassetid://11394027278", -- Image1 url
+						Image2 = "rbxassetid://11395249153", -- Image2 url
+						Shake = true,
+						Sound1 = {
+							10483790459, -- SoundId
+							{ Volume = 0.5 }, -- Sound properties
+						},
+						Sound2 = {
+							10483837590, -- SoundId
+							{ Volume = 0.5 }, -- Sound properties
+						},
+						Flashing = {
+							true, -- Enabled
+							Color3.fromRGB(48, 25, 52), -- Color
+						},
+						Tease = {
+							false, -- Enabled ('false' if you don't want tease)
+							Min = 1,
+							Max = 1,
+						},
+					},
+				},
+				CustomDialog = {"You died to whom you call The Deer God","Closets Wont work! So try running","Its form is incomprehensible to a human upclose...","..-so avoid Eye Contact" }
+			})
+			local function GetGitSound(GithubSnd,SoundName)
+				local url=GithubSnd
+				if not isfile(SoundName..".mp3") then
+					writefile(SoundName..".mp3", game:HttpGet(url))
+				end
+				local sound=Instance.new("Sound")
+				sound.SoundId=(getcustomasset or getsynasset)(SoundName..".mp3")
+				return sound
+			end
+			local Chase = GetGitSound("https://github.com/Brololto/SPECYYYY2CHASSE/blob/main/Screen_Recording_20230331-232129_YouTube.mp3?raw=true","Specimen2chase")
+			Chase.Parent = workspace
+			Chase.Volume = 6
+			local cameraShaker = require(game.ReplicatedStorage.CameraShaker)
+			local camera = workspace.CurrentCamera
+
+			local camShake = cameraShaker.new(Enum.RenderPriority.Camera.Value, function(cf)
+				camera.CFrame = camera.CFrame * cf
+			end)
+			camShake:Start()
+			-----[[ Advanced ]]-----
+			entity.Debug.OnEntitySpawned = function(entity)
+
+				Chase:Play()
+				game.TweenService:Create(Chase,TweenInfo.new(5),{Volume = 0.7}):Play()
+				camShake:ShakeSustain(cameraShaker.Presets.Earthquake)
+			end
+
+			entity.Debug.OnEntityDespawned = function(entity)
+				local Achievements = loadstring(game:HttpGet("https://raw.githubusercontent.com/RegularVynixu/Utilities/main/Doors/Custom%20Achievements/Source.lua"))()
+
+-- Creates and displays your custom achievement
+Achievements.Get({
+    Title = "It Walks.",
+    Desc = "i need to run.",
+    Reason = "Survive Specimen 2",
+    Image = "https://github.com/Brololto/Specimen-2-Badge/blob/main/SeekPng.com_spookys-house-of-jumpscares_3482069.png?raw=true",
+    })
+			end
+
+			entity.Debug.OnEntityStartMoving = function(entity)
+
+			end
+
+			entity.Debug.OnEntityFinishedRebound = function(entity)
+
+			end
+
+			entity.Debug.OnDeath = function()
+				getgenv().death = true
+				firesignal(game.ReplicatedStorage.EntityInfo.DeathHint.OnClientEvent, {"You died to whom you call Specimen 2", "Hiding will not work, It has your walkspeed through out the game.", "So all you can do is run."}, "Blue")
+			end
+			---------------------------
+
+			-- Run the created entity
+			Creator.runEntity(entity)
+			end
+			end)
 
 
 
@@ -2033,124 +2151,6 @@ Creator.runEntity(entity)
 
 
 
-spawn(function() ---------------------The entity's Real Name Is The Slime Monster
-while wait(385) do
-		if workspace.Ambience_Figure.Playing == true then
-			continue
-		end
-		if workspace.Ambience_FigureEnd.Playing == true then
-			continue
-		end
-		if workspace.Ambience_FigureStart.Playing == true then
-			continue
-		end
-	 local Creator = loadstring(game:HttpGet("https://raw.githubusercontent.com/RegularVynixu/Utilities/main/Doors%20Entity%20Spawner/Source.lua"))()
-			-- Create entity
-			local entity = Creator.createEntity({
-				Model = "https://github.com/Brololto/NEWV2/blob/main/specimen_2_remodel_fixed.rbxm?raw=true",
-				Speed = 25,
-				DelayTime = 0,
-				HeightOffset = 0,
-				CanKill = true,
-				BreakLights = true,
-				FlickerLights = {
-					true,
-					80,
-				},
-				Cycles = {
-					Min = 1,
-					Max = 1,
-					WaitTime = 0.1,
-				},
-				CamShake = {
-					true,
-					{5, 15, 0.1, 1},
-					10,
-				},
-				Jumpscare = {
-					false, -- Enabled ('false' if you don't want jumpscare)
-					{
-						Image1 = "rbxassetid://11394027278", -- Image1 url
-						Image2 = "rbxassetid://11395249153", -- Image2 url
-						Shake = true,
-						Sound1 = {
-							10483790459, -- SoundId
-							{ Volume = 0.5 }, -- Sound properties
-						},
-						Sound2 = {
-							10483837590, -- SoundId
-							{ Volume = 0.5 }, -- Sound properties
-						},
-						Flashing = {
-							true, -- Enabled
-							Color3.fromRGB(48, 25, 52), -- Color
-						},
-						Tease = {
-							false, -- Enabled ('false' if you don't want tease)
-							Min = 1,
-							Max = 1,
-						},
-					},
-				},
-				CustomDialog = {"You died to whom you call The Deer God","Closets Wont work! So try running","Its form is incomprehensible to a human upclose...","..-so avoid Eye Contact" }
-			})
-			local function GetGitSound(GithubSnd,SoundName)
-				local url=GithubSnd
-				if not isfile(SoundName..".mp3") then
-					writefile(SoundName..".mp3", game:HttpGet(url))
-				end
-				local sound=Instance.new("Sound")
-				sound.SoundId=(getcustomasset or getsynasset)(SoundName..".mp3")
-				return sound
-			end
-			local Chase = GetGitSound("https://github.com/Brololto/SPECYYYY2CHASSE/blob/main/Screen_Recording_20230331-232129_YouTube.mp3?raw=true","Specimen2chase")
-			Chase.Parent = workspace
-			Chase.Volume = 6
-			local cameraShaker = require(game.ReplicatedStorage.CameraShaker)
-			local camera = workspace.CurrentCamera
-
-			local camShake = cameraShaker.new(Enum.RenderPriority.Camera.Value, function(cf)
-				camera.CFrame = camera.CFrame * cf
-			end)
-			camShake:Start()
-			-----[[ Advanced ]]-----
-			entity.Debug.OnEntitySpawned = function(entity)
-
-				Chase:Play()
-				game.TweenService:Create(Chase,TweenInfo.new(5),{Volume = 0.7}):Play()
-				camShake:ShakeSustain(cameraShaker.Presets.Earthquake)
-			end
-
-			entity.Debug.OnEntityDespawned = function(entity)
-				local Achievements = loadstring(game:HttpGet("https://raw.githubusercontent.com/RegularVynixu/Utilities/main/Doors/Custom%20Achievements/Source.lua"))()
-
--- Creates and displays your custom achievement
-Achievements.Get({
-    Title = "It Walks.",
-    Desc = "i need to run.",
-    Reason = "Survive Specimen 2",
-    Image = "https://github.com/Brololto/Specimen-2-Badge/blob/main/SeekPng.com_spookys-house-of-jumpscares_3482069.png?raw=true",
-    })
-			end
-
-			entity.Debug.OnEntityStartMoving = function(entity)
-
-			end
-
-			entity.Debug.OnEntityFinishedRebound = function(entity)
-
-			end
-
-			entity.Debug.OnDeath = function()
-				getgenv().death = true
-				firesignal(game.ReplicatedStorage.EntityInfo.DeathHint.OnClientEvent, {"You died to whom you call Specimen 2", "Hiding will not work, It has your walkspeed through out the game.", "So all you can do is run."}, "Blue")
-			end
-			---------------------------
-
-			-- Run the created entity
-			Creator.runEntity(entity)
-			end
-			end)
 
 
 
@@ -2528,8 +2528,6 @@ end)
 
 
 
-
-game:GetService("ReplicatedStorage").GameData.LatestRoom:GetPropertyChangedSignal("Value"):Wait()
 
 game:GetService("ReplicatedStorage").GameData.LatestRoom:GetPropertyChangedSignal("Value"):Wait()
 
